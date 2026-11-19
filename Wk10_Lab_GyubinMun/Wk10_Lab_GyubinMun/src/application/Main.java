@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -28,7 +29,25 @@ public class Main extends Application {
 
         Text scenetitle = new Text("Employment Application");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        grid.add(scenetitle, 0, 0, 2, 1);
+        // Company logo
+        Label logoBadge = new Label("G");
+        logoBadge.setMinSize(45, 45);
+        logoBadge.setMaxSize(45, 45);
+        logoBadge.setAlignment(Pos.CENTER);
+        logoBadge.setStyle("-fx-background-color: #2f6fed;"
+                + "-fx-background-radius: 30px;"
+                + "-fx-text-fill: white;"
+                + "-fx-font-size: 24px; -fx-font-weight: bold;");
+
+        Label companyName = new Label("GyubinWorks");
+        companyName.setStyle("-fx-font-size: 22px;"
+                + "-fx-font-weight: bold; -fx-text-fill: #2f6fed;");
+
+        HBox logoBox = new HBox(10, logoBadge, companyName);
+        logoBox.setAlignment(Pos.CENTER_LEFT);
+
+        VBox heading = new VBox(12, logoBox, scenetitle);
+        grid.add(heading, 0, 0, 2, 1);
         grid.add(new Label("Personal Information"), 0, 1, 2, 1);
 
         TextField fullName = new TextField();
@@ -120,7 +139,7 @@ public class Main extends Application {
         });
         ScrollPane scroll = new ScrollPane(grid);
         scroll.setFitToWidth(true);
-        primaryStage.setScene(new Scene(scroll, 650, 720));
+        primaryStage.setScene(new Scene(scroll, 650, 780));
         primaryStage.show();
     }
 
